@@ -1,0 +1,5 @@
+<div id="result-list">
+	<input #location type="text" placeholder="Location...">
+	<span class="button" (click)="search(location.value)">Search</span>
+	<result *ngFor="let result of results" [result]="result"></result>
+</div>
