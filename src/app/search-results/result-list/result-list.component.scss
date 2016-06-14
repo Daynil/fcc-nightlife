@@ -1,6 +1,7 @@
 @import '../../shared/colors';
+@import '../../shared/common';
 
-.button {
+/*.button {
   border: 1px solid aliceblue;
   border-radius: 5px;
   padding: 10px;
@@ -12,7 +13,7 @@
     cursor: pointer;
   }
 }
-
+*/
 input {
   border: 1px solid hsl(208, 100%, 97%);
   padding: 10px;

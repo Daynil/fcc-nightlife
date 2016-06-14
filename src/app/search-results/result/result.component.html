@@ -8,6 +8,9 @@
 				<i *ngIf="halfStar" class="fa fa-star-half" aria-hidden="true"></i>
 			</div>
 			{{ result.reviewCount }} reviews
+			<div class="button going" (click)="attend()">
+				{{ going }} Going
+			</div>
 		</div>
 	</div>
 	<div class="snippet">{{ result.snippetText }}</div>

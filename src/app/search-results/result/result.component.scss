@@ -1,4 +1,5 @@
 @import '../../shared/colors.scss';
+@import '../../shared/common.scss';
 
 .result-container {
 	margin: 0 auto;
@@ -26,6 +27,14 @@
 		display: inline-flex;
 		padding-right: 5px;
 	}
+	.going {
+    width: 75px;
+    padding: 5px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: 12px;
+	}
 }
 
 a {
@@ -41,4 +50,6 @@ a {
 	vertical-align: top;
 	display: inline-block;
 	width: 70%;
+	position: relative;
+	top: 20px;
 }

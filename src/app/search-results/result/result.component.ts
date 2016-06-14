@@ -12,6 +12,7 @@ export class ResultComponent implements OnInit {
   @Input() result: Result;
 	stars: number[] = [];
 	halfStar: boolean;
+	going = 0;
 
 	constructor() { }
 
@@ -21,6 +22,10 @@ export class ResultComponent implements OnInit {
 			this.stars.push(i);
 		}
 		this.halfStar = Math.floor(this.result.rating) !== this.result.rating;
+	}
+
+	attend() {
+		this.going++;
 	}
 
 }
