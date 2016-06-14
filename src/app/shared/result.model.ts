@@ -5,4 +5,5 @@ export interface Result {
   reviewCount: number;
   url: string;
   snippetText: string;
+  numAttendees: number;
 }

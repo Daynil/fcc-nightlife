@@ -19,7 +19,6 @@ module.exports = (passport) => {
       User.findOne({ 'twitterID': profile.id }, (err, user) => {
         if (err) return done(err);
         if (user) {
-          console.log('existing user', user);
           return done(null, user);
         }
         else {
@@ -28,7 +27,6 @@ module.exports = (passport) => {
 
           newUser.save( (err) => {
             if (err) throw err;
-            console.log('newuser', newUser);
             return done(null, newUser);
           })
         }

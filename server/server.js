@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const compress = require('compression');
+const _ = require('lodash');
 require('isomorphic-fetch');
 require('dotenv').load();
 let production = process.env.NODE_ENV === 'production';
@@ -17,6 +18,7 @@ require('./passport')(passport);
 // Database
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URI);
+const Results = require('./results');
 
 // Yelp specific
 const Yelp = require('yelp');
@@ -58,9 +60,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/searchlocation/:location', (req, res) => {
+app.get('/api/searchlocation/:location', (req, res) => {
 	let location = req.params.location;
-	console.log('server location: ', location);
+
 	yelp.search({ term: 'bars', location: location })
 		.then( data => {
 			res.status(200).json(data);
@@ -70,19 +72,73 @@ app.get('/searchlocation/:location', (req, res) => {
 		});
 });
 
+app.get('/api/getAttendedResults', (req, res) => {
+	Results
+		.find({})
+		.exec()
+		.then(results => {
+			res.status(200).send(results);
+		})
+});
+
+/** 
+ * Request body: url of venue & twitterID of attendee
+ * Either adds or removes attendance of venue
+ */
+app.post('/api/changeAttendance', (req, res) => {
+	let attendInfo = req.body;
+	Results
+		.findOne({resultUrl: attendInfo.resultUrl})
+		.exec()
+		.then(result => {
+
+			if (result == null) {
+				let newAttendedResult = new Results({
+					resultUrl: attendInfo.resultUrl,
+					attendees: [attendInfo.twitterID]
+				});
+				newAttendedResult.save(err => {
+					if (err) {
+						console.log(err);
+						res.status(500).end(err);
+					}
+					else {
+						res.status(200).json({numAttendees: newAttendedResult.attendees.length});
+					}
+				})
+			} else {
+				// Check if user is already attending this venue
+				let alreadyAttending = _.find(result.attendees, o => o === attendInfo.twitterID);
+				if (typeof alreadyAttending != 'undefined') {
+					let attendingIndex = result.attendees.indexOf(alreadyAttending);
+					result.attendees.splice(attendingIndex, 1);
+				} else {
+					result.attendees.push(attendInfo.twitterID);
+				}
+				result.save((err, resultSaved, numAffected) => {
+					if (err) {
+						console.log('ERROR: ', err);
+						res.status(400).end(err);
+					}
+					else res.status(200).json({numAttendees: resultSaved.attendees.length});
+				});	
+			}
+		})
+});
+
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
 app.get('/auth/twitter/callback', passport.authenticate('twitter', {successRedirect: '/after-auth'}) );
 
 app.get('/auth/checkCreds', (req, res) => {
-	console.log('is server authed?', req.isAuthenticated());
 	if (req.isAuthenticated()) {
 		let userInfo = {
-			twitterId: req.user.twitterID
+			twitterID: req.user.twitterID
 		}
 		res.send({loggedIn: true, user: userInfo});
 	} else res.send({loggedIn: false, user: null});
 });
+
 
 /*app.get('/auth/logout', (req, res) => {
 	req.logout();

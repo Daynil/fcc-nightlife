@@ -3,7 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from '@angul
 import { HTTP_PROVIDERS } from '@angular/http';
 
 import { AfterAuth } from './after-auth.component';
-import { AuthService } from './auth.service';
+import { AuthService } from './shared/auth.service';
 import { ResultListComponent } from './search-results/result-list/result-list.component';
 
 @Component({

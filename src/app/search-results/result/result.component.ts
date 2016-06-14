@@ -14,7 +14,6 @@ export class ResultComponent implements OnInit {
 
 	stars: number[] = [];
 	halfStar: boolean;
-	going = 0;
 
 	constructor() { }
 

@@ -4,7 +4,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/toPromise";
 
 import { User, Credentials } from "./user.model";
-import { handleError, parseJson } from './shared/http-helpers';
+import { handleError, parseJson } from './http-helpers';
 
 @Injectable()
 export class AuthService {

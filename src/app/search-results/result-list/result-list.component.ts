@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '../../auth.service';
+import { AuthService } from '../../shared/auth.service';
 import { ResultListService } from './result-list.service';
 import { ResultComponent } from '../result/result.component';
 import { Result } from '../../shared/result.model';
-import { User, Credentials } from '../../user.model';
+import { User, Credentials } from '../../shared/user.model';
 
 @Component({
 	moduleId: module.id,
@@ -34,13 +34,20 @@ export class ResultListComponent implements OnInit {
 	search(location: string) {
 		if (location.length < 1) return;
 		this.resultListService.searchlocation(location)
-			.then( res => {
+			.then( (res: Result[]) => {
 				this.results = res;
 			});
 	}
 
 	attend(result: Result) {
-		if (this.credentials.loggedIn) console.log('already logged, attend success!');
+		let resultIndex = this.results.indexOf(result);
+		if (this.credentials.loggedIn) {
+			this.resultListService
+					.changeAttendance(result.url, this.credentials.user.twitterID)
+					.then(amountOfVenueAttendees => {
+						this.results[resultIndex].numAttendees = amountOfVenueAttendees.numAttendees;
+					});
+		}
 		else {
 			this.authService
 					.handleAuthLogging()
@@ -48,7 +55,11 @@ export class ResultListComponent implements OnInit {
 					.then((creds: Credentials) => {
 						this.credentials = creds;
 						if (this.credentials.loggedIn) {
-							console.log('logged in and voted same time!');
+							this.resultListService
+									.changeAttendance(result.url, this.credentials.user.twitterID)
+									.then(amountOfVenueAttendees => {
+										this.results[resultIndex].numAttendees = amountOfVenueAttendees.numAttendees;
+									});
 						}
 					})
 					.catch(err => console.log(err));
