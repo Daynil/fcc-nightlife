@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Result } from '../../shared/result.model';
 
@@ -10,6 +10,8 @@ import { Result } from '../../shared/result.model';
 })
 export class ResultComponent implements OnInit {
   @Input() result: Result;
+	@Output() onAttend: EventEmitter<Result> = new EventEmitter<Result>();
+
 	stars: number[] = [];
 	halfStar: boolean;
 	going = 0;
@@ -25,7 +27,7 @@ export class ResultComponent implements OnInit {
 	}
 
 	attend() {
-		this.going++;
+		this.onAttend.emit(this.result);
 	}
 
 }

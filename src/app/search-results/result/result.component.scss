@@ -11,6 +11,8 @@
 
 .image {
 	display: inline-block;
+	border-radius: 5px;
+	overflow: hidden;
 }
 
 .url-rating {
@@ -48,7 +50,7 @@ a {
 
 .snippet {
 	vertical-align: top;
-	display: inline-block;
+	display: inline-block;	
 	width: 70%;
 	position: relative;
 	top: 20px;

@@ -24,7 +24,7 @@
         'http',
         'platform-browser',
         'platform-browser-dynamic',
-        'router',
+        'router-deprecated',
         'testing',
         'upgrade'
     ];

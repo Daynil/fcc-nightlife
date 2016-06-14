@@ -2,6 +2,7 @@
 	<input #location type="text" placeholder="Location...">
 	<span class="button" (click)="search(location.value)">Search</span>
 	<div id="list-container">
-		<result *ngFor="let result of results" [result]="result"></result>
+		<result *ngFor="let result of results" 
+			[result]="result" (onAttend)="attend($event)"></result>
 	</div>
 </div>
