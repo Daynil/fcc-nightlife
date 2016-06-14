@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import "rxjs/add/operator/toPromise";
 
 import { parseJson, handleError } from '../../shared/http-helpers';
-import { Result } from '../../shared/results.model';
+import { Result } from '../../shared/result.model';
 
 @Injectable()
 export class ResultListService {

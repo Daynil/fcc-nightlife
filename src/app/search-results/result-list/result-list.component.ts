@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ResultListService } from './result-list.service';
 import { ResultComponent } from '../result/result.component';
-import { Result } from '../../shared/results.model';
+import { Result } from '../../shared/result.model';
 
 @Component({
 	moduleId: module.id,

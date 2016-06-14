@@ -1,5 +1,44 @@
 @import '../../shared/colors.scss';
 
-#result-container {
+.result-container {
+	margin: 0 auto;
+	color: aliceblue;
+	width: 70%;
+	border-bottom: 1px solid hsla(208, 100%, 97%, 0.5);
+	padding: 10px;
+}
+
+.image {
+	display: inline-block;
+}
+
+.url-rating {
+	vertical-align: top;
+	width: 20%;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	.url {
+		text-align: center;
+		padding-bottom: 5px;
+	}
+	.stars {
+		display: inline-flex;
+		padding-right: 5px;
+	}
+}
+
+a {
 	color: $yellow;
+	transition: 0.3s;
+	text-decoration: none;
+	&:hover {
+		color: aliceblue;
+	}
+}
+
+.snippet {
+	vertical-align: top;
+	display: inline-block;
+	width: 70%;
 }

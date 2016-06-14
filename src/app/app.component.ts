@@ -12,10 +12,7 @@ import { ResultListComponent } from './search-results/result-list/result-list.co
   providers: HTTP_PROVIDERS
 })
 export class AppComponent {
-  serverData: string;
   
-  constructor() { 
-
-  }
+  constructor() { }
 
 }
