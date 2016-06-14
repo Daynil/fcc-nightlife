@@ -1,19 +1,17 @@
 @import '../../shared/colors';
 @import '../../shared/common';
 
-/*.button {
-  border: 1px solid aliceblue;
-  border-radius: 5px;
-  padding: 10px;
-  color: aliceblue;
-  transition: 0.2s;
-  &:hover {
-    background-color: aliceblue;
-    color: $blue1;
-    cursor: pointer;
-  }
+#search-menu {
+  position: relative;
+  display: inline-block;
 }
-*/
+
+.fa-cog {
+  position: absolute;
+  top: 3px;
+  left: 260px;
+}
+
 input {
   border: 1px solid hsl(208, 100%, 97%);
   padding: 10px;

@@ -18,10 +18,10 @@ export class ResultListComponent implements OnInit {
 	results: Result[];
 	credentials: Credentials = {loggedIn: false, user: null};
 
+	loading = false;
+
 	constructor( private resultListService: ResultListService,
-							 private authService: AuthService ) {
-		
-	}
+							 private authService: AuthService ) { }
 
 	ngOnInit() {
 		this.checkLoggedState().then( res => this.credentials = res );
@@ -33,9 +33,11 @@ export class ResultListComponent implements OnInit {
 
 	search(location: string) {
 		if (location.length < 1) return;
+		this.loading = true;
 		this.resultListService.searchlocation(location)
 			.then( (res: Result[]) => {
 				this.results = res;
+				this.loading = false;
 			});
 	}
 

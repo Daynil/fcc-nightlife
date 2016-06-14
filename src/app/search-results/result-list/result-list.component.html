@@ -1,6 +1,9 @@
 <div id="result-list">
-	<input #location type="text" placeholder="Location...">
-	<span class="button" (click)="search(location.value)">Search</span>
+	<div id="search-menu">
+		<input #location type="text" placeholder="Location...">
+		<span class="button" (click)="search(location.value)">Search</span>
+		<i *ngIf="loading" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+	</div>
 	<div id="list-container">
 		<result *ngFor="let result of results" 
 			[result]="result" (onAttend)="attend($event)"></result>

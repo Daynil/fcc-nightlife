@@ -43,7 +43,7 @@ export class AuthService {
 		return new Promise((resolve, reject) => {
 			this.refreshLoggedState().then(res => {
 				if (!res.loggedIn) {
-					let oauthWindow = window.open('http://127.0.0.1:3000/auth/twitter',
+					let oauthWindow = window.open('https://daynil-fcc-nightlife.herokuapp.com/auth/twitter',
 												'OAuthConnect',
 												'location=0,status=0,width=800,height=400');
 					let oauthInterval = window.setInterval(() => {

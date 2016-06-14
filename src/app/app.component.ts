@@ -3,6 +3,7 @@ import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS, Router } from '@angul
 import { HTTP_PROVIDERS } from '@angular/http';
 
 import { AfterAuth } from './after-auth.component';
+import { AttributionComponent } from './shared/attribution.component';
 import { AuthService } from './shared/auth.service';
 import { ResultListComponent } from './search-results/result-list/result-list.component';
 
@@ -11,7 +12,7 @@ import { ResultListComponent } from './search-results/result-list/result-list.co
   selector: 'my-app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [ResultListComponent, ROUTER_DIRECTIVES],
+  directives: [AttributionComponent, ResultListComponent, ROUTER_DIRECTIVES],
   providers: [HTTP_PROVIDERS, ROUTER_PROVIDERS, AuthService]
 })
 @RouteConfig([
