@@ -7,7 +7,10 @@ const morgan = require('morgan');
 const compress = require('compression');
 const _ = require('lodash');
 require('isomorphic-fetch');
-require('dotenv').load();
+
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').load();
+}
 let production = process.env.NODE_ENV === 'production';
 
 // OAuth login
