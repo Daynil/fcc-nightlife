@@ -25,9 +25,8 @@
 	vertical-align: top;
 	display: inline-flex;
 	flex-direction: column;
-	align-items: center;
+	margin-left: 10px;
 	.url {
-		text-align: center;
 		padding-bottom: 5px;
 	}
 	.stars {
@@ -37,7 +36,6 @@
 	.going {
     width: 75px;
     padding: 5px;
-    margin: 0 auto;
     text-align: center;
     position: relative;
     top: 12px;

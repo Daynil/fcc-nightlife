@@ -59,7 +59,8 @@ gulp.task('compile-ts', function() {
 gulp.task('copy-htmljs', function() {
 	var sourceFiles = [
 		'./src/**/*.html',
-		'./src/**/*.js'
+		'./src/**/*.js',
+		'./src/**/*.css'
 	];
 
 	var stream = gulp
