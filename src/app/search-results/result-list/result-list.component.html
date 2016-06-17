@@ -1,6 +1,6 @@
 <div id="result-list">
 	<div id="search-menu">
-		<input #location type="text" placeholder="Location...">
+		<input #location type="text" placeholder="Location..." (keyup.enter)="search(location.value)">
 		<span class="button" (click)="search(location.value)">Search</span>
 		<i *ngIf="loading" class="fa fa-cog fa-spin fa-3x fa-fw"></i>
 	</div>

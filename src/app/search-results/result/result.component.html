@@ -1,17 +1,19 @@
-<div class="result-container">
-	<div class="image"><img [src]="result.imageUrl"></div>
-	<div class="url-rating">
-		<div class="url"><a [href]="result.url">{{ result.name }}</a></div>
-		<div class="rating">
-			<div class="stars">
-				<i *ngFor="let star of stars" class="fa fa-star" aria-hidden="true"></i>
-				<i *ngIf="halfStar" class="fa fa-star-half" aria-hidden="true"></i>
-			</div>
-			{{ result.reviewCount }} reviews
-			<div class="button going" (click)="attend()">
-				{{ result.numAttendees }} Going
+<div class="pure-g result-container">
+	<div class="image-url-rate pure-u-1 pure-u-md-1-3">
+		<div class="image"><img [src]="result.imageUrl"></div>
+		<div class="url-rating">
+			<div class="url"><a [href]="result.url">{{ result.name }}</a></div>
+			<div class="rating">
+				<div class="stars">
+					<i *ngFor="let star of stars" class="fa fa-star" aria-hidden="true"></i>
+					<i *ngIf="halfStar" class="fa fa-star-half" aria-hidden="true"></i>
+				</div>
+				{{ result.reviewCount }} reviews
+				<div class="button going" (click)="attend()">
+					{{ result.numAttendees }} Going
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="snippet">{{ result.snippetText }}</div>
+	<div class="snippet pure-u-1 pure-u-md-2-3">{{ result.snippetText }}</div>
 </div>

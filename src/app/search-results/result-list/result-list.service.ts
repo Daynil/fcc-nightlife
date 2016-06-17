@@ -23,6 +23,7 @@ export class ResultListService {
   private formatResponse(data): Result[] {
     let businesses = <Array<any>>data.businesses;
     let formattedRes: Result[] = [];
+  
     businesses.forEach(business => {
       formattedRes.push({
         name: business.name,
